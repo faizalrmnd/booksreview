@@ -73,7 +73,7 @@ export default {
       let token = localStorage.getItem('token')
       let self = this
 
-      axios.post('http://localhost:3000/review/post', {
+      axios.post('http://35.186.144.59/review/post', {
         bookid: bookid,
         ulasan: this.ulasan
       }, { headers: { token: token } })
@@ -84,46 +84,37 @@ export default {
         .catch(function (error) {
           console.log(error)
         })
+    },
+    vote: function (bookid, command) {
+      let token = localStorage.getItem('token')
+      let self = this
+
+      axios.put('http://35.186.144.59/book/vote', {
+        id: bookid,
+        command: command
+      }, { headers: { token: token } })
+        .then(function (response) {
+          self.$store.dispatch('getOneBook', token)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    },
+    ulasanVote: function (ulasanid, command) {
+      let token = localStorage.getItem('token')
+      let self = this
+
+      axios.put('http://35.186.144.59/review/vote', {
+        id: ulasanid,
+        command: command
+      }, { headers: { token: token } })
+        .then(function (response) {
+          self.$store.dispatch('getOneBook', token)
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
     }
-    // ,
-    // vote: function (questionId, command) {
-    //   let token = localStorage.getItem('token')
-    //   let self = this
-
-    //   axios.put('http://35.197.134.112/question/vote', {
-    //     id: questionId,
-    //     command: command
-    //   }, { headers: { token: token } })
-    //     .then(function (response) {
-    //       self.$store.dispatch('getQuestion', token)
-
-    //       setTimeout(function () {
-    //         self.$store.dispatch('getAnswer', self.$store.state.answer._id)
-    //       }, 1000)
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error)
-    //     })
-    // },
-    // ulasanVote: function (answerId, command) {
-    //   let token = localStorage.getItem('token')
-    //   let self = this
-
-    //   axios.put('http://35.197.134.112/answer/vote', {
-    //     id: answerId,
-    //     command: command
-    //   }, { headers: { token: token } })
-    //     .then(function (response) {
-    //       self.$store.dispatch('getQuestion', token)
-
-    //       setTimeout(function () {
-    //         self.$store.dispatch('getAnswer', self.$store.state.answer._id)
-    //       }, 1000)
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error)
-    //     })
-    // }
   },
   created () {
     let payload = this.$route.params.id

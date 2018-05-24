@@ -25,7 +25,7 @@ export default new Vuex.Store({
   actions: {
     register: function (context, payload) {
       return new Promise((resolve, reject) => {
-        axios.post('http://localhost:3000/register', {
+        axios.post('http://35.186.144.59/register', {
           name: payload.name,
           email: payload.email,
           password: payload.password
@@ -43,7 +43,7 @@ export default new Vuex.Store({
     },
     login: function (context, payload) {
       return new Promise((resolve, reject) => {
-        axios.post('http://localhost:3000/login', {
+        axios.post('http://35.186.144.59/login', {
           email: payload.email,
           password: payload.password
         })
@@ -62,7 +62,7 @@ export default new Vuex.Store({
     postBook: function (context, payload) {
       let token = localStorage.getItem('token')
 
-      axios.post('http://localhost:3000/book/post', payload, { headers: { token: token } })
+      axios.post('http://35.186.144.59/book/post', payload, { headers: { token: token } })
         .then(response => {
           console.log(response.data.data)
           context.commit('addBookToList', response.data.data)
@@ -72,7 +72,7 @@ export default new Vuex.Store({
       let token = localStorage.getItem('token')
 
       axios
-        .get('http://localhost:3000/book', { headers: { token: token } })
+        .get('http://35.186.144.59/book', { headers: { token: token } })
         .then(response => {
           // If request is good...
           console.log(response.data)
@@ -86,7 +86,7 @@ export default new Vuex.Store({
       let token = localStorage.getItem('token')
 
       axios
-        .get(`http://localhost:3000/book/${payload}`, { headers: { token: token } })
+        .get(`http://35.186.144.59/book/${payload}`, { headers: { token: token } })
         .then(response => {
         // If request is good...
           // console.log(response.data.data)
