@@ -8,10 +8,10 @@ A simple website where you can post book and share your opinion.
 SECRET=helohelo
 CLOUD_BUCKET=ecommerce-faizal
 GCLOUD_PROJECT=sharp-effort-200807
-KEYFILE_PATH=My First Project-ab82cea39004.json
+KEYFILE_PATH=keyfile.json
 ```
 
-#### Get the My First Project-ab82cea39004.json from me!
+#### Get the keyfile.json from me!
 
 ### API
 
